@@ -34,11 +34,11 @@ alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="Highs" type="HBoxContainer" parent="HBox/Tides"]
+[node name="Lows" type="HBoxContainer" parent="HBox/Tides"]
 layout_mode = 2
 alignment = 1
 
-[node name="Lows" type="HBoxContainer" parent="HBox/Tides"]
+[node name="Highs" type="HBoxContainer" parent="HBox/Tides"]
 layout_mode = 2
 alignment = 1
 

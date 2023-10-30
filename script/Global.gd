@@ -24,6 +24,7 @@ func _ready() -> void:
 
 func init_arr() -> void:
 	arr.edge = [1, 2, 3, 4, 5, 6]
+	arr.phase = ["init_high_waves", "init_low_waves", "reset_waves"]
 
 
 func init_num() -> void:
@@ -110,6 +111,7 @@ func init_scene() -> void:
 	
 	scene.satellite = load("res://scene/2/satellite.tscn")
 	
+	scene.gravity = load("res://scene/3/gravity.tscn")
 	scene.tide = load("res://scene/3/tide.tscn")
 	pass
 

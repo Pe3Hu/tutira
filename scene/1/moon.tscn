@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl6x7xq6tti12"]
+[gd_scene load_steps=6 format=3 uid="uid://dl6x7xq6tti12"]
 
 [ext_resource type="Script" path="res://scene/1/moon.gd" id="1_7qwgf"]
 [ext_resource type="PackedScene" uid="uid://matxhurqygh0" path="res://scene/2/indicator.tscn" id="2_wj0ej"]
 [ext_resource type="PackedScene" uid="uid://wwnxuhg0a3iw" path="res://scene/3/flow.tscn" id="3_to10d"]
+[ext_resource type="PackedScene" uid="uid://b0ynpqe3xd2gm" path="res://scene/2/aspect.tscn" id="3_u3q4v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
@@ -31,7 +32,39 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
 layout_mode = 2
 alignment = 1
 
-[node name="Health" parent="VBox" instance=ExtResource("2_wj0ej")]
+[node name="HBox" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Health" parent="VBox/HBox" instance=ExtResource("2_wj0ej")]
+layout_mode = 2
+
+[node name="Gravities" type="HBoxContainer" parent="VBox/HBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Turnovers" type="HBoxContainer" parent="VBox/HBox/Gravities"]
+layout_mode = 2
+alignment = 1
+
+[node name="Modifiers" type="HBoxContainer" parent="VBox/HBox/Gravities/Turnovers"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Gravity" parent="VBox/HBox/Gravities/Turnovers" instance=ExtResource("3_u3q4v")]
+layout_mode = 2
+
+[node name="Highs" type="HBoxContainer" parent="VBox/HBox/Gravities"]
+layout_mode = 2
+alignment = 1
+
+[node name="Modifiers" type="HBoxContainer" parent="VBox/HBox/Gravities/Highs"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Gravity" parent="VBox/HBox/Gravities/Highs" instance=ExtResource("3_u3q4v")]
 layout_mode = 2
 
 [node name="Satellites" type="HBoxContainer" parent="VBox"]

@@ -14,7 +14,7 @@ func _input(event) -> void:
 		match event.keycode:
 			KEY_SPACE:
 				if event.is_pressed() && !event.is_echo():
-					pass
+					Global.node.sketch.ocean.lagoons.get_child(0).follow_phase()
 
 
 func _process(delta_) -> void:
