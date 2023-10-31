@@ -42,6 +42,8 @@ vertical_alignment = 1
 
 [node name="Aspects" type="GridContainer" parent="VBox"]
 layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
 columns = 3
 
 [node name="Impulse" parent="VBox/Aspects" instance=ExtResource("2_2vmgv")]
@@ -51,4 +53,5 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="MaxCharge" parent="VBox/Aspects" instance=ExtResource("2_2vmgv")]
+visible = false
 layout_mode = 2

@@ -19,7 +19,7 @@ func set_attributes(input_: Dictionary) -> void:
 	input.proprietor = self
 	input.border = {}
 	input.border.type = "aspect"
-	input.border.subtype = type
+	input.border.subtype = type + " tide"
 	input.content = {}
 	input.content.type = "number"
 	input.content.subtype = satellite.get_impulse_value()
