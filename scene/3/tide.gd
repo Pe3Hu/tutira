@@ -7,6 +7,7 @@ extends MarginContainer
 var flow = null
 var satellite = null
 var type = null
+var subtype = null
 var impulse = 0
 
 
@@ -15,6 +16,10 @@ func set_attributes(input_: Dictionary) -> void:
 	satellite = input_.satellite
 	type = input_.type
 	
+	#print(input_.keys())
+	if input_.has("subtype"):
+		subtype = input_.subtype
+	
 	var input = {}
 	input.proprietor = self
 	input.border = {}
@@ -22,10 +27,17 @@ func set_attributes(input_: Dictionary) -> void:
 	input.border.subtype = type + " tide"
 	input.content = {}
 	input.content.type = "number"
-	input.content.subtype = satellite.get_impulse_value()
+	input.content.subtype = satellite.get_mass_value()
+	
+	match subtype:
+		"secret":
+			input.content.subtype = 3
+		"element":
+			input.content.subtype = floor(input.content.subtype * 0.5)
+	
 	basic.set_attributes(input)
 	
-	impulse += satellite.get_impulse_value()
+	impulse += input.content.subtype
 
 
 func set_as_tide_breaker() -> void:

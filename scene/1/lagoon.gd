@@ -26,7 +26,7 @@ func set_attributes(input_: Dictionary) -> void:
 	
 	switch_striker()
 	
-	for _i in 30:
+	for _i in 0:
 		follow_phase()
 
 
@@ -82,8 +82,12 @@ func switch_striker() -> void:
 	striker.flow.set_impulse_as_striker(true)
 	striker.flow.lows.visible = false
 	striker.flow.highs.visible = true
+	striker.flow.clean_tides("secret")
+	striker.flow.clean_tides("legacie")
 	moon.flow.set_impulse_as_striker(false)
 	moon.flow.lows.visible = true
 	moon.flow.highs.visible = false
+	moon.flow.clean_tides("secret")
+	moon.flow.clean_tides("legacie")
 	moon.flow.clean_tide_breaker()
 

@@ -46,12 +46,16 @@ theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 3
 
-[node name="Impulse" parent="VBox/Aspects" instance=ExtResource("2_2vmgv")]
+[node name="Mass" parent="VBox/Aspects" instance=ExtResource("2_2vmgv")]
 layout_mode = 2
 
-[node name="CurrentCharge" parent="VBox/Aspects" instance=ExtResource("2_2vmgv")]
+[node name="CurrentMilestone" parent="VBox/Aspects" instance=ExtResource("2_2vmgv")]
 layout_mode = 2
 
-[node name="MaxCharge" parent="VBox/Aspects" instance=ExtResource("2_2vmgv")]
+[node name="MaxMilestone" parent="VBox/Aspects" instance=ExtResource("2_2vmgv")]
 visible = false
 layout_mode = 2
+
+[node name="Belts" type="VBoxContainer" parent="VBox"]
+layout_mode = 2
+alignment = 1

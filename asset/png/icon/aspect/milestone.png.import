@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crvhspjyupoet"
-path="res://.godot/imported/impulse.png-d58c082cfb70dc89bc5a0234eab0b4ae.ctex"
+uid="uid://76a0v4him1nk"
+path="res://.godot/imported/milestone.png-2c113d4d57f9b740a1e6b517c2a4704f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/png/icon/aspect/impulse.png"
-dest_files=["res://.godot/imported/impulse.png-d58c082cfb70dc89bc5a0234eab0b4ae.ctex"]
+source_file="res://asset/png/icon/aspect/milestone.png"
+dest_files=["res://.godot/imported/milestone.png-2c113d4d57f9b740a1e6b517c2a4704f.ctex"]
 
 [params]
 

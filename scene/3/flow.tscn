@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://wwnxuhg0a3iw"]
+[gd_scene load_steps=5 format=3 uid="uid://wwnxuhg0a3iw"]
 
 [ext_resource type="Script" path="res://scene/3/flow.gd" id="1_dvlev"]
+[ext_resource type="PackedScene" uid="uid://ciw38iqel0v5a" path="res://scene/0/icon.tscn" id="2_firc1"]
 [ext_resource type="PackedScene" uid="uid://b0ynpqe3xd2gm" path="res://scene/2/aspect.tscn" id="2_fym0d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
@@ -39,6 +40,24 @@ layout_mode = 2
 alignment = 1
 
 [node name="Highs" type="HBoxContainer" parent="HBox/Tides"]
+layout_mode = 2
+alignment = 1
+
+[node name="Enchantment" parent="HBox/Tides" instance=ExtResource("2_firc1")]
+visible = false
+layout_mode = 2
+
+[node name="Secrets" type="HBoxContainer" parent="HBox/Tides"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Element" parent="HBox/Tides" instance=ExtResource("2_firc1")]
+visible = false
+layout_mode = 2
+
+[node name="Legacies" type="HBoxContainer" parent="HBox/Tides"]
+visible = false
 layout_mode = 2
 alignment = 1
 

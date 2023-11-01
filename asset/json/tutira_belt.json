@@ -1,0 +1,97 @@
+[
+ {
+  "title": "strength",
+  "token": "self",
+  "value": 2,
+  "rarity": 10,
+  "penalty": 0
+ },
+ {
+  "title": "speed",
+  "token": "self",
+  "value": 2,
+  "rarity": 10,
+  "penalty": 0
+ },
+ {
+  "title": "youthfulness",
+  "token": "self",
+  "type": "phase",
+  "subtype": "upcoming",
+  "value": 1,
+  "rarity": 3,
+  "penalty": 2
+ },
+ {
+  "title": "senility",
+  "token": "self",
+  "type": "phase",
+  "subtype": "passed",
+  "value": 1,
+  "rarity": 3,
+  "penalty": 2
+ },
+ {
+  "title": "noon",
+  "token": "self",
+  "type": "moon",
+  "subtype": "full",
+  "value": 1,
+  "rarity": 6,
+  "penalty": 0
+ },
+ {
+  "title": "dawn",
+  "token": "self",
+  "type": "moon",
+  "subtype": "half",
+  "value": 1,
+  "rarity": 4,
+  "penalty": 0
+ },
+ {
+  "title": "dusk",
+  "token": "self",
+  "type": "moon",
+  "subtype": "new",
+  "value": 1,
+  "rarity": 6,
+  "penalty": 0
+ },
+ {
+  "title": "authority",
+  "token": "other",
+  "type": "weight",
+  "subtype": "any",
+  "value": 1,
+  "rarity": 1,
+  "penalty": 2
+ },
+ {
+  "title": "secrecy",
+  "token": "other",
+  "type": "enchantment",
+  "subtype": "any",
+  "value": 1,
+  "rarity": 2,
+  "penalty": 1
+ },
+ {
+  "title": "affinity",
+  "token": "other",
+  "type": "element",
+  "subtype": "any",
+  "value": 1,
+  "rarity": 3,
+  "penalty": 1
+ },
+ {
+  "title": "titul",
+  "token": "other",
+  "type": "weight",
+  "subtype": "eqaual",
+  "value": 1,
+  "rarity": 2,
+  "penalty": 1
+ }
+]

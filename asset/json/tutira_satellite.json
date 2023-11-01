@@ -3,40 +3,40 @@
   "title": 0,
   "faction": "z",
   "rank": "copper",
-  "impulse": 1,
-  "charge": 5,
+  "mass": 1,
+  "milestone": 5,
   "rarity": 1
  },
  {
   "title": 1,
   "faction": "z",
   "rank": "copper",
-  "impulse": 2,
-  "charge": 4,
+  "mass": 2,
+  "milestone": 4,
   "rarity": 1
  },
  {
   "title": 2,
   "faction": "z",
   "rank": "copper",
-  "impulse": 3,
-  "charge": 3,
+  "mass": 3,
+  "milestone": 3,
   "rarity": 1
  },
  {
   "title": 3,
   "faction": "z",
   "rank": "copper",
-  "impulse": 4,
-  "charge": 2,
+  "mass": 4,
+  "milestone": 2,
   "rarity": 1
  },
  {
   "title": 4,
   "faction": "z",
   "rank": "copper",
-  "impulse": 5,
-  "charge": 1,
+  "mass": 5,
+  "milestone": 1,
   "rarity": 1
  }
 ]

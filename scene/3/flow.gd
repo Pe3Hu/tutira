@@ -3,6 +3,10 @@ extends MarginContainer
 
 @onready var highs = $HBox/Tides/Highs
 @onready var lows = $HBox/Tides/Lows
+@onready var enchantment = $HBox/Tides/Enchantment
+@onready var secrets = $HBox/Tides/Secrets
+@onready var element = $HBox/Tides/Element
+@onready var legacies = $HBox/Tides/Legacies
 @onready var impulse = $HBox/Impulse
 
 var moon = null
@@ -27,10 +31,10 @@ func set_attributes(input_: Dictionary) -> void:
 
 func refill_satellites() -> void:
 	for satellite in moon.satellites.get_children():
-		for _i in satellite.get_max_charge_value():
+		for _i in satellite.get_max_milestone_value():
 			satellites.append(satellite)
 		
-		satellite.currentCharge.set_content_value(satellite.maxCharge.get_content_value())
+		satellite.currentMilestone.set_content_value(satellite.maxMilestone.get_content_value())
 	
 	satellites.shuffle()
 
@@ -51,6 +55,13 @@ func set_tide_breaker() -> void:
 		highs.add_child(tide_breaker)
 		tide_breaker.set_as_tide_breaker()
 		impulse.change_content_value(tide_breaker.impulse)
+		
+		var input = {}
+		input.flow = self
+		input.satellite = tide_breaker.satellite
+		input.type = "high"
+		add_secret(input)
+		add_legacy(input)
 
 
 func clean_tide_breaker() -> void:
@@ -70,7 +81,6 @@ func ride_wave(type_: String) -> void:
 	input.flow = self
 	input.satellite = satellites.pop_front()
 	input.type = type_
-	input.satellite.currentCharge.change_content_value(-1)
 	
 	var tides = get(type_+"s")
 	var tide = Global.scene.tide.instantiate()
@@ -78,6 +88,10 @@ func ride_wave(type_: String) -> void:
 	tide.set_attributes(input)
 	
 	impulse.change_content_value(tide.impulse)
+	
+	add_secret(input)
+	add_legacy(input)
+	input.satellite.currentMilestone.change_content_value(-1)
 
 
 func add_turnover_modifiers() -> void:
@@ -95,8 +109,56 @@ func add_turnover_modifiers() -> void:
 	moon.add_modifier(input)
 
 
+func add_secret(input_: Dictionary) -> void:
+	if input_.satellite.enchantment != null:
+		if input_.type == "high" or Global.dict.dominant.enchantment[opponent.enchantment.subtype] == input_.satellite.enchantment:
+			if secrets.get_child_count() == 0:
+				secrets.visible = true
+			
+				var input = {}
+				input.type = "enchantment"
+				input.subtype = input_.satellite.enchantment
+				enchantment.set_attributes(input)
+				enchantment.visible = true
+				
+				input_.subtype = "secret"
+			
+			var tide = Global.scene.tide.instantiate()
+			secrets.add_child(tide)
+			tide.set_attributes(input_)
+			impulse.change_content_value(tide.impulse)
+
+
+func add_legacy(input_: Dictionary) -> void:
+	if input_.satellite.element != null:
+		if input_.type == "high" or  Global.dict.dominant.element[opponent.element] == input_.satellite.element:
+			if legacies.get_child_count() == 0:
+				legacies.visible = true
+				
+				var input = {}
+				input.type = "element"
+				input.subtype = input_.satellite.element
+				element.set_attributes(input)
+				element.visible = true
+			
+			input_.subtype = "legacy"
+			
+			var tide = Global.scene.tide.instantiate()
+			legacies.add_child(tide)
+			tide.set_attributes(input_)
+			impulse.change_content_value(tide.impulse)
+
+
 func clean_tides(type_: String) -> void:
 	var tides = get(type_+"s")
+	
+	match type_:
+		"legacie":
+			tides.visible = false
+			element.visible = false
+		"secret":
+			tides.visible = false
+			enchantment.visible = false
 	
 	while tides.get_child_count() > 0:
 		var tide = tides.get_child(0)

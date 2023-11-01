@@ -16,20 +16,10 @@ var lagoon = null
 
 func set_attributes(input_: Dictionary) -> void:
 	ocean = input_.ocean
-#	gravity.high = {}
-#	gravity.high.value = {}
-#	gravity.high.value.min = 1
-#	gravity.high.value.current = 1
-#	gravity.high.modifiers = []
-#	gravity.turnover = {}
-#	gravity.turnover.modifiers = []
-#	gravity.turnover.value = {}
-#	gravity.turnover.value.min = 1
-#	gravity.turnover.value.current = 1
-	
 	
 	init_starter_gravities()
 	init_starter_satellites()
+	init_starter_belts()
 	
 	var input = {}
 	input.moon = self
@@ -85,14 +75,30 @@ func init_starter_satellites() -> void:
 			satellite.set_attributes(input)
 
 
-func add_gravity_modifier(gravity_: String, modifier_: int, turns_: int) -> void:
+func init_starter_belts() -> void:
 	var input = {}
-	input.type = gravity_
-	input.subtype = turns_
-	input.value = 1
+	input.kind = {}
+	input.kind.type = "enchantment"
+	input.kind.subtype = Global.arr.enchantment.pick_random()
+	input.condition = {}
+	input.condition.value = 3
+	input.condition.penalty = 1
 	
-	#gravity[gravity_].value.current += modifier_
-	#gravity[gravity_].value.current = max(gravity[gravity_].value.min, gravity[gravity_].value.current)
+	var satellites_ = get_satellites_based_on_mass(1)
+	var satellite = satellites_.front()
+	
+	satellite.add_belt(input)
+
+
+func get_satellites_based_on_mass(mass_: int) -> Array:
+	var result = []
+	
+	for satellite in satellites.get_children():
+		if satellite.get_mass_value() == mass_:
+			result.append(satellite)
+	
+	return result
+
 
 
 func knockout() -> void:

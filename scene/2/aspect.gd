@@ -33,10 +33,7 @@ func show_icons() -> void:
 func set_content(input_: Dictionary) -> void:
 	match input_.content.type:
 		"number":
-			var input = {}
-			input.type = input_.content.type
-			input.subtype = input_.content.subtype
-			content.set_attributes(input)
+			content.set_attributes(input_.content)
 			content.custom_minimum_size = Vector2(Global.vec.size.aspect)
 
 

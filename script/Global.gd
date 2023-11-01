@@ -25,6 +25,8 @@ func _ready() -> void:
 func init_arr() -> void:
 	arr.edge = [1, 2, 3, 4, 5, 6]
 	arr.phase = ["init_high_waves", "init_low_waves", "reset_waves"]
+	arr.enchantment = ["source", "riverbed", "estuary"]
+	arr.element = ["aqua", "ice", "wind", "storm", "fire", "lava", "earth", "plant"]
 
 
 func init_num() -> void:
@@ -33,7 +35,27 @@ func init_num() -> void:
 
 func init_dict() -> void:
 	init_neighbor()
+	init_dominant()
 	init_satellite()
+	init_belt()
+	
+
+
+func init_dominant() -> void:
+	dict.dominant = {}
+	dict.dominant.enchantment = {}
+	dict.dominant.element = {}
+	
+	for _i in arr.enchantment.size():
+		var _j = (_i + arr.enchantment.size() - 1) % arr.enchantment.size()
+		dict.dominant.enchantment[arr.enchantment[_i]] = arr.enchantment[_j]
+	
+	for _i in arr.element.size():
+		var _j = (_i + arr.element.size() / 2) % arr.element.size()
+		dict.dominant.element[arr.element[_i]] = arr.element[_j]
+	
+	dict.dominant.enchantment[null] = null
+	dict.dominant.element[null] = null
 
 
 func init_neighbor() -> void:
@@ -97,6 +119,28 @@ func init_satellite() -> void:
 				data[key] = satellite[key]
 		
 		dict.satellite.title[str(satellite.title)] = data
+	
+	dict.satellite.award = {}
+	dict.satellite.award.sin = 5
+	dict.satellite.award.enchantment = 4
+	dict.satellite.award.element = 3
+
+
+func init_belt() -> void:
+	dict.belt = {}
+	dict.belt.title = {}
+	
+	var path = "res://asset/json/tutira_belt.json"
+	var array = load_data(path)
+	
+	for belt in array:
+		var data = {}
+		
+		for key in belt:
+			if key != "title":
+				data[key] = belt[key]
+		
+		dict.belt.title[str(belt.title)] = data
 
 
 func init_node() -> void:
@@ -110,6 +154,7 @@ func init_scene() -> void:
 	scene.lagoon = load("res://scene/1/lagoon.tscn")
 	
 	scene.satellite = load("res://scene/2/satellite.tscn")
+	scene.belt = load("res://scene/2/belt.tscn")
 	
 	scene.gravity = load("res://scene/3/gravity.tscn")
 	scene.tide = load("res://scene/3/tide.tscn")
@@ -123,6 +168,9 @@ func init_vec():
 	vec.size.number = Vector2(5, 32)
 	vec.size.aspect = Vector2(40, 40)
 	vec.size.bar = Vector2(120, 12)
+	
+	vec.size.kind = Vector2(32, 32)
+	vec.size.sixteen = Vector2(16, 16)
 	
 	init_window_size()
 
