@@ -81,6 +81,7 @@ func ride_wave(type_: String) -> void:
 	input.flow = self
 	input.satellite = satellites.pop_front()
 	input.type = type_
+	input.satellite.currentMilestone.change_content_value(-1)
 	
 	var tides = get(type_+"s")
 	var tide = Global.scene.tide.instantiate()
@@ -88,10 +89,8 @@ func ride_wave(type_: String) -> void:
 	tide.set_attributes(input)
 	
 	impulse.change_content_value(tide.impulse)
-	
 	add_secret(input)
 	add_legacy(input)
-	input.satellite.currentMilestone.change_content_value(-1)
 
 
 func add_turnover_modifiers() -> void:
@@ -131,7 +130,7 @@ func add_secret(input_: Dictionary) -> void:
 
 func add_legacy(input_: Dictionary) -> void:
 	if input_.satellite.element != null:
-		if input_.type == "high" or  Global.dict.dominant.element[opponent.element] == input_.satellite.element:
+		if input_.type == "high" or  Global.dict.dominant.element[opponent.element.subtype] == input_.satellite.element:
 			if legacies.get_child_count() == 0:
 				legacies.visible = true
 				

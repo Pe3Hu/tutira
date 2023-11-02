@@ -15,7 +15,7 @@ func set_attributes(input_: Dictionary) -> void:
 	custom_minimum_size = Vector2(Global.vec.size.letter)
 	var path = "res://asset/png/icon/"
 	var types = ["aspect"]
-	var kinds = ["enchantment"]
+	var kinds = ["enchantment", "element", "sin", "phase", "moon", "weight"]
 	
 	if types.has(type):
 		custom_minimum_size = Vector2(Global.vec.size.icon)
@@ -38,7 +38,11 @@ func set_attributes(input_: Dictionary) -> void:
 
 
 func get_number() -> int:
-	return subtype
+	return int(subtype)
+
+
+func get_number_f() -> float:
+	return float(subtype)
 
 
 func change_number(value_) -> void:

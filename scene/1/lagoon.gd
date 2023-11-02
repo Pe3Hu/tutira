@@ -57,6 +57,8 @@ func init_high_waves() -> void:
 	
 	for _i in striker.highGravity.get_content_value():
 		striker.flow.ride_wave("high")
+	
+	#striker.get_satellites_phases()
 
 
 func init_low_waves() -> void:

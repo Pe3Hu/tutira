@@ -8,14 +8,14 @@ extends MarginContainer
 @onready var maxMilestone = $VBox/Aspects/MaxMilestone
 @onready var currentMilestone = $VBox/Aspects/CurrentMilestone
 
-var ocean = null
+var moon = null
 var enchantment = null
 var element = null
 var sin = null
 
 
 func set_attributes(input_: Dictionary) -> void:
-	ocean = input_.ocean
+	moon = input_.moon
 	title.text = input_.title
 	
 	set_aspects()

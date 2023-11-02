@@ -17,10 +17,13 @@ var lagoon = null
 func set_attributes(input_: Dictionary) -> void:
 	ocean = input_.ocean
 	
+	set_nodes_attributes()
 	init_starter_gravities()
 	init_starter_satellites()
 	init_starter_belts()
-	
+
+
+func set_nodes_attributes() -> void:
 	var input = {}
 	input.moon = self
 	flow.set_attributes(input)
@@ -67,7 +70,7 @@ func init_starter_satellites() -> void:
 	for title in Global.dict.satellite.title:
 		if Global.dict.satellite.title[title].faction == "z":
 			var input = {}
-			input.ocean = self
+			input.moon = self
 			input.title = title
 		
 			var satellite = Global.scene.satellite.instantiate()
@@ -78,11 +81,25 @@ func init_starter_satellites() -> void:
 func init_starter_belts() -> void:
 	var input = {}
 	input.kind = {}
-	input.kind.type = "enchantment"
-	input.kind.subtype = Global.arr.enchantment.pick_random()
+#	input.kind.type = "enchantment"
+#	input.kind.subtype = Global.arr.enchantment.pick_random()
+#	input.condition = {}
+#	input.condition.value = 3
+#	input.condition.penalty = 1
+	
+#	input.kind.type = "element"
+#	input.kind.subtype = Global.arr.element.pick_random()
+#	input.condition = {}
+#	input.condition.value = 0.5
+#	input.condition.penalty = 1
+	
+	input.kind.type = "sin"
+	input.kind.subtype = "envy"
 	input.condition = {}
-	input.condition.value = 3
-	input.condition.penalty = 1
+	input.condition.type = "weight"
+	input.condition.subtype = "any"
+	input.condition.value = 1
+	input.condition.penalty = 0
 	
 	var satellites_ = get_satellites_based_on_mass(1)
 	var satellite = satellites_.front()
@@ -100,8 +117,48 @@ func get_satellites_based_on_mass(mass_: int) -> Array:
 	return result
 
 
+func get_satellites_phases() -> Dictionary:
+	var phases = {}
+	phases.total = 0
+	phases.upcoming = 0
+	
+	for satellite in satellites.get_children():
+		phases.total += satellite.maxMilestone.get_content_value()
+		phases.upcoming += satellite.currentMilestone.get_content_value()
+	
+	phases.passed = phases.total - phases.upcoming
+	#print(phases)
+	return phases
+
+
+func get_satellites_moons() -> Dictionary:
+	var moons = {}
+	moons.full = 0
+	moons.half = 0
+	moons.new = 0
+	
+	for satellite in satellites.get_children():
+		var milestones = {}
+		milestones.current = satellite.currentMilestone.get_content_value()
+		milestones.max = satellite.maxMilestone.get_content_value()
+		var moon = null
+		
+		match milestones.current:
+			milestones.max:
+				moon = "full"
+			0:
+				moon = "new"
+		
+		if moon == null:
+			moon = "half"
+		
+		print([satellite.get_index(), moon])
+		moons[moon] += 1
+	print(moons)
+	return moons
+
 
 func knockout() -> void:
 	lagoon.winner = flow.opponent.moon
 	lagoon.end = true
-	print(self)
+	print("knockouted ", self)

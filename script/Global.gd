@@ -34,11 +34,25 @@ func init_num() -> void:
 
 
 func init_dict() -> void:
-	init_neighbor()
+	init_sin()
 	init_dominant()
+	init_neighbor()
 	init_satellite()
 	init_belt()
 	
+
+
+func init_sin() -> void:
+	dict.sin = {}
+	dict.sin.self = {}
+	dict.sin.self["greed"] = "low tide"
+	dict.sin.self["pride"] = "tidebreaker"
+	dict.sin.self["anger"] = "high tide"
+	dict.sin.other = {}
+	dict.sin.other["sloth"] = "low tide"
+	dict.sin.other["lust"] = "tidebreaker"
+	dict.sin.other["gluttony"] = "high tide"
+	dict.sin.other["envy"] = "all"
 
 
 func init_dominant() -> void:
