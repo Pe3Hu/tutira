@@ -11,13 +11,13 @@ func set_attributes(input_: Dictionary) -> void:
 	proprietor = input_.proprietor
 	
 	var input = {}
-	input.type = "aspect"
+	input.type = "tide"
 	input.subtype = input_.border.subtype
 	border.set_attributes(input)
-	border.custom_minimum_size = Vector2(Global.vec.size.aspect)
+	border.custom_minimum_size = Vector2(Global.vec.size.tide)
 	
-	set_content(input_)
-	custom_minimum_size = Vector2(Global.vec.size.aspect)
+	content.set_attributes(input_.content)
+	custom_minimum_size = Vector2(Global.vec.size.tide)
 
 
 func hide_icons() -> void:
@@ -28,13 +28,6 @@ func hide_icons() -> void:
 func show_icons() -> void:
 	border.visible = true
 	content.visible = true
-
-
-func set_content(input_: Dictionary) -> void:
-	match input_.content.type:
-		"number":
-			content.set_attributes(input_.content)
-			content.custom_minimum_size = Vector2(Global.vec.size.aspect)
 
 
 func get_content_value() -> int:

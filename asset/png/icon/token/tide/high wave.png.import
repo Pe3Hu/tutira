@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwuj8r7kqa87k"
-path="res://.godot/imported/eqaual.png-f2a51bd1b46dd39574c95a7389e86184.ctex"
+uid="uid://4u6ho57q6boe"
+path="res://.godot/imported/high wave.png-5ac15345b4f52e6e75f6fae7a6442502.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/png/icon/token/weight/eqaual.png"
-dest_files=["res://.godot/imported/eqaual.png-f2a51bd1b46dd39574c95a7389e86184.ctex"]
+source_file="res://asset/png/icon/token/tide/high wave.png"
+dest_files=["res://.godot/imported/high wave.png-5ac15345b4f52e6e75f6fae7a6442502.ctex"]
 
 [params]
 

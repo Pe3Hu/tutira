@@ -183,8 +183,10 @@ func init_vec():
 	vec.size.aspect = Vector2(40, 40)
 	vec.size.bar = Vector2(120, 12)
 	
-	vec.size.kind = Vector2(32, 32)
+	vec.size.token = Vector2(32, 32)
 	vec.size.sixteen = Vector2(16, 16)
+	vec.size.tide = Vector2(48, 48)
+	vec.size.tidebreaker = Vector2(48, 48)
 	
 	init_window_size()
 

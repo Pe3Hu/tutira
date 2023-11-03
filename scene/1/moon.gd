@@ -34,9 +34,10 @@ func set_nodes_attributes() -> void:
 
 func init_starter_gravities() -> void:
 	var input = {}
-	input.proprietor = self
+	input.moon = self
 	input.type = "gravity"
 	input.subtype = "turnover"
+	input.turns = -1
 	input.value = 0
 	turnoverGravity.set_attributes(input)
 	
@@ -45,7 +46,6 @@ func init_starter_gravities() -> void:
 	
 	input.moon = self
 	input.subtype = "turnover"
-	input.turns = -1
 	input.value = 1
 	add_modifier(input)
 	
@@ -61,7 +61,7 @@ func add_modifier(input_: Dictionary) -> void:
 	modifier.set_attributes(input_)
 	
 	var gravity = get(input_.subtype+"Gravity")
-	gravity.stack.change_number(modifier.value)
+	gravity.couple.stack.change_number(modifier.value)
 
 
 func init_starter_satellites() -> void:
@@ -99,11 +99,12 @@ func init_starter_belts() -> void:
 	input.kind.subtype = "envy" #envy pride greed
 	input.condition = {}
 	input.condition.type = "weight"
-	input.condition.subtype = "eqaual"
+	input.condition.subtype = "equal"
 #	input.condition.type = "weight"
 #	input.condition.subtype = "any"
 	input.condition.value = 1
 	input.condition.penalty = 0
+	
 
 	satellites_ = get_satellites_based_on_mass(1)
 	satellite = satellites_.front()
@@ -114,7 +115,7 @@ func get_satellites_based_on_mass(mass_: int) -> Array:
 	var result = []
 	
 	for satellite in satellites.get_children():
-		if satellite.get_mass_value() == mass_:
+		if satellite.aspects.get_mass_value() == mass_:
 			result.append(satellite)
 	
 	return result
@@ -141,19 +142,18 @@ func get_satellites_moons() -> Dictionary:
 	
 	for satellite in satellites.get_children():
 		var milestones = {}
-		milestones.max = satellite.get_max_milestone_value()
-		milestones.current = satellite.get_current_milestone_value()
+		milestones.passed = satellite.get_passed_milestone_value()
+		milestones.upcoming = satellite.get_current_milestone_value()
 		var moon = null
 		
-		match milestones.current:
-			milestones.max:
-				moon = "full"
-			0:
-				moon = "new"
+		if milestones.passed == 0:
+			moon = "new"
+		
+		if milestones.upcoming == 0:
+			moon = "full"
 		
 		if moon == null:
 			moon = "half"
-		
 		
 		moons[moon] += 1
 	

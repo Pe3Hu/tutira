@@ -30,7 +30,8 @@ func set_attributes(input_: Dictionary) -> void:
 	input.border.subtype = type + " tide"
 	input.content = {}
 	input.content.type = "number"
-	input.content.subtype = satellite.get_mass_value()
+	input.content.subtype = satellite.aspects.get_mass_value()
+	custom_minimum_size = Vector2(Global.vec.size.tide)
 	
 	match subtype:
 		"secret":
@@ -46,13 +47,14 @@ func set_attributes(input_: Dictionary) -> void:
 		apply_other_belts()
 
 
-func set_as_tide_breaker() -> void:
+func set_as_tidebreaker() -> void:
 	var input = {}
-	input.type = "aspect"
+	input.type = "tide"
 	input.subtype = "tidebreaker"
 	basic.border.set_attributes(input)
-	impulse = basic.get_content_value()
-	
+	impulse = satellite.aspects.get_mass_value()#basic.get_content_value()
+	#custom_minimum_size = Vector2(Global.vec.size.tidebreaker)
+	#print(impulse)
 	if subtype == null:
 		apply_self_belts()
 		apply_other_belts()

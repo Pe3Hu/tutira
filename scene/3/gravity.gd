@@ -15,4 +15,9 @@ func set_attributes(input_: Dictionary) -> void:
 	turns = input_.turns
 	value = input_.value
 	
+	input_.proprietor = self
 	couple.set_attributes(input_)
+
+
+func get_gravity_value() -> int:
+	return couple.stack.get_number()

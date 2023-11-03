@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bo8o7q2slxygk"]
 
 [ext_resource type="Script" path="res://scene/3/tide.gd" id="1_l6w73"]
-[ext_resource type="PackedScene" uid="uid://b0ynpqe3xd2gm" path="res://scene/2/aspect.tscn" id="2_4iq3a"]
+[ext_resource type="PackedScene" uid="uid://b0ynpqe3xd2gm" path="res://scene/3/impulse.tscn" id="2_4iq3a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
@@ -23,6 +23,7 @@ size_flags_vertical = 4
 script = ExtResource("1_l6w73")
 
 [node name="BG" type="Panel" parent="."]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
 

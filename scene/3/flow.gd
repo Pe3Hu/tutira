@@ -11,7 +11,7 @@ extends MarginContainer
 
 var moon = null
 var satellites = []
-var tide_breaker = null
+var tidebreaker = null
 var opponent = null
 
 
@@ -21,20 +21,21 @@ func set_attributes(input_: Dictionary) -> void:
 	var input = {}
 	input.proprietor = self
 	input.border = {}
-	input.border.type = "aspect"
+	input.border.type = "tide"
 	input.border.subtype = "high wave"
 	input.content = {}
 	input.content.type = "number"
 	input.content.subtype = 0
 	impulse.set_attributes(input)
+	#impulse.custom_minimum_size = Vector2(Global.vec.size.tidebreaker)
 
 
 func refill_satellites() -> void:
 	for satellite in moon.satellites.get_children():
-		for _i in satellite.get_max_milestone_value():
-			satellites.append(satellite)
+		satellite.aspects.turnover()
 		
-		satellite.currentMilestone.set_content_value(satellite.maxMilestone.get_content_value())
+		for _i in satellite.aspects.get_upcoming_value():
+			satellites.append(satellite)
 	
 	satellites.shuffle()
 
@@ -46,28 +47,28 @@ func douse_wave() -> void:
 		moon.health.update_value("current", -splash)
 
 
-func set_tide_breaker() -> void:
+func set_tidebreaker() -> void:
 	if lows.get_child_count() > 0:
-		tide_breaker = lows.get_child(lows.get_child_count()-1)
-		lows.remove_child(tide_breaker)
-		highs.add_child(tide_breaker)
-		tide_breaker.set_as_tide_breaker()
-		impulse.change_content_value(tide_breaker.impulse)
+		tidebreaker = lows.get_child(lows.get_child_count()-1)
+		lows.remove_child(tidebreaker)
+		highs.add_child(tidebreaker)
+		tidebreaker.set_as_tidebreaker()
+		impulse.change_content_value(tidebreaker.impulse)
 		
 		var input = {}
 		input.flow = self
-		input.satellite = tide_breaker.satellite
+		input.satellite = tidebreaker.satellite
 		input.type = "high"
-		input.tide = tide_breaker
+		input.tide = tidebreaker
 		add_secret(input)
 		add_legacy(input)
 
 
-func clean_tide_breaker() -> void:
-	if tide_breaker != null:
-		highs.remove_child(tide_breaker)
-		tide_breaker.queue_free()
-		tide_breaker = null
+func clean_tidebreaker() -> void:
+	if tidebreaker != null:
+		highs.remove_child(tidebreaker)
+		tidebreaker.queue_free()
+		tidebreaker = null
 
 
 func ride_wave(type_: String) -> void:
@@ -80,7 +81,7 @@ func ride_wave(type_: String) -> void:
 	input.flow = self
 	input.satellite = satellites.pop_front()
 	input.type = type_
-	input.satellite.currentMilestone.change_content_value(-1)
+	input.satellite.aspects.next_milestone()
 	
 	var tides = get(type_+"s")
 	var tide = Global.scene.tide.instantiate()
@@ -96,13 +97,15 @@ func ride_wave(type_: String) -> void:
 func add_turnover_modifiers() -> void:
 	var input = {}
 	input.moon = opponent.moon
-	input.type = "high"
+	input.type = "gravity"
+	input.subtype = "high"
 	input.turns = 1
-	input.value = moon.turnoverGravity.get_content_value()
+	input.value = moon.turnoverGravity.get_gravity_value()
 	opponent.moon.add_modifier(input)
 	
 	input.moon = moon
-	input.type = "turnover"
+	input.type = "gravity"
+	input.subtype = "turnover"
 	input.turns = -1
 	input.value = 1
 	moon.add_modifier(input)
@@ -168,7 +171,7 @@ func clean_tides(type_: String) -> void:
 
 func set_impulse_as_striker(striker_: bool) -> void:
 	var input = {}
-	input.type = "aspect"
+	input.type = "tide"
 	input.subtype = null
 	
 	match striker_:

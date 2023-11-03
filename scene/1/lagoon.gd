@@ -52,10 +52,9 @@ func follow_phase() -> void:
 
 
 func init_high_waves() -> void:
-	striker.flow.clean_tides("high")
-	striker.flow.set_tide_breaker()
+	striker.flow.set_tidebreaker()
 	
-	for _i in striker.highGravity.get_content_value():
+	for _i in striker.highGravity.get_gravity_value():
 		striker.flow.ride_wave("high")
 	
 	#striker.get_satellites_phases()
@@ -63,7 +62,7 @@ func init_high_waves() -> void:
 
 func init_low_waves() -> void:
 	var moon = opponents[striker]
-	moon.flow.clean_tides("low")
+	#moon.flow.clean_tides("low")
 	moon.flow.douse_wave()
 
 
@@ -83,6 +82,7 @@ func switch_striker() -> void:
 	striker.flow.set_impulse_as_striker(true)
 	striker.flow.lows.visible = false
 	striker.flow.highs.visible = true
+	striker.flow.clean_tides("high")
 	striker.flow.clean_tides("secret")
 	striker.flow.clean_tides("legacie")
 	
@@ -90,7 +90,8 @@ func switch_striker() -> void:
 	moon.flow.set_impulse_as_striker(false)
 	moon.flow.lows.visible = true
 	moon.flow.highs.visible = false
+	moon.flow.clean_tides("low")
 	moon.flow.clean_tides("secret")
 	moon.flow.clean_tides("legacie")
-	moon.flow.clean_tide_breaker()
+	moon.flow.clean_tidebreaker()
 

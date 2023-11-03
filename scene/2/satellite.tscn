@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bm32fyedqtiul"]
 
 [ext_resource type="Script" path="res://scene/2/satellite.gd" id="1_yrtdq"]
-[ext_resource type="PackedScene" uid="uid://b0ynpqe3xd2gm" path="res://scene/2/aspect.tscn" id="2_2vmgv"]
 [ext_resource type="FontFile" uid="uid://deu2vlj4q8un0" path="res://asset/font/letter/Chunk Five Print.otf" id="2_o4hud"]
+[ext_resource type="PackedScene" uid="uid://ds455y6qnjnqr" path="res://scene/2/aspects.tscn" id="3_4hobw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
@@ -41,20 +41,7 @@ theme_override_fonts/font = ExtResource("2_o4hud")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Aspects" type="GridContainer" parent="VBox"]
-layout_mode = 2
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 0
-columns = 3
-
-[node name="Mass" parent="VBox/Aspects" instance=ExtResource("2_2vmgv")]
-layout_mode = 2
-
-[node name="CurrentMilestone" parent="VBox/Aspects" instance=ExtResource("2_2vmgv")]
-layout_mode = 2
-
-[node name="MaxMilestone" parent="VBox/Aspects" instance=ExtResource("2_2vmgv")]
-visible = false
+[node name="Aspects" parent="VBox" instance=ExtResource("3_4hobw")]
 layout_mode = 2
 
 [node name="Belts" type="VBoxContainer" parent="VBox"]

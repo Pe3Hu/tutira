@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://b0ynpqe3xd2gm"]
 
-[ext_resource type="Script" path="res://scene/2/aspect.gd" id="1_227he"]
-[ext_resource type="PackedScene" uid="uid://ciw38iqel0v5a" path="res://scene/0/icon.tscn" id="2_876kw"]
+[ext_resource type="Script" path="res://scene/3/impulse.gd" id="1_qh7k8"]
+[ext_resource type="PackedScene" uid="uid://ciw38iqel0v5a" path="res://scene/0/icon.tscn" id="2_dceqw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
-[node name="Aspect" type="MarginContainer"]
+[node name="Impulse" type="MarginContainer"]
 custom_minimum_size = Vector2(5, 5)
 anchors_preset = 8
 anchor_left = 0.5
@@ -20,15 +20,15 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_227he")
+script = ExtResource("1_qh7k8")
 
 [node name="BG" type="Panel" parent="."]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
 
-[node name="Border" parent="." instance=ExtResource("2_876kw")]
+[node name="Border" parent="." instance=ExtResource("2_dceqw")]
 layout_mode = 2
 
-[node name="Content" parent="." instance=ExtResource("2_876kw")]
+[node name="Content" parent="." instance=ExtResource("2_dceqw")]
 layout_mode = 2

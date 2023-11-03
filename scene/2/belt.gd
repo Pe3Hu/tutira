@@ -50,23 +50,24 @@ func get_other_bonus_impulse_for_satellite(satellite_: MarginContainer) -> int:
 	
 	if flag:
 		value += couple.stack.get_number()
-		value *= satellite.get_passed_milestone_value()
+		value *= satellite.aspects.get_passed_value()
 	
 	return value
 
 
 func check_weight(satellite_: MarginContainer) -> bool:
 	var flag = false
+	#print([satellite.aspects.get_mass_value(), satellite_.aspects.get_mass_value()])
 	
 	match couple.title.subtype:
 		"any":
 			flag = true
 		"equal":
-			flag = satellite_.get_mass_value() == satellite.get_mass_value()
+			flag = satellite_.aspects.get_mass_value() == satellite.aspects.get_mass_value()
 		"heavier":
-			flag = satellite_.get_mass_value() > satellite.get_mass_value()
+			flag = satellite_.aspects.get_mass_value() > satellite.aspects.get_mass_value()
 		"lighter":
-			flag = satellite_.get_mass_value() < satellite.get_mass_value()
+			flag = satellite_.aspects.get_mass_value() < satellite.aspects.get_mass_value()
 	
 	return flag
 
