@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlhr3oimm8m4f"
-path="res://.godot/imported/gravity high.png-0e96ab71db0048b957ac05b8ab7818ec.ctex"
+uid="uid://rvivyrb63vv"
+path="res://.godot/imported/any.png-74d5c291e013e52a5fb08cd5953a424d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/png/icon/aspect/gravity high.png"
-dest_files=["res://.godot/imported/gravity high.png-0e96ab71db0048b957ac05b8ab7818ec.ctex"]
+source_file="res://asset/png/icon/token/element/any.png"
+dest_files=["res://.godot/imported/any.png-74d5c291e013e52a5fb08cd5953a424d.ctex"]
 
 [params]
 

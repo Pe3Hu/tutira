@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4adx666bywdn"
-path="res://.godot/imported/gravity turnover.png-a75be93b789a9d614d78c65017ddaa03.ctex"
+uid="uid://dycs3bj1xew3y"
+path="res://.godot/imported/passed.png-9654a214b07058a1cc008799865f9557.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/png/icon/aspect/gravity turnover.png"
-dest_files=["res://.godot/imported/gravity turnover.png-a75be93b789a9d614d78c65017ddaa03.ctex"]
+source_file="res://asset/png/icon/token/aspect/passed.png"
+dest_files=["res://.godot/imported/passed.png-9654a214b07058a1cc008799865f9557.ctex"]
 
 [params]
 

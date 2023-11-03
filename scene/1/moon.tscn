@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scene/1/moon.gd" id="1_7qwgf"]
 [ext_resource type="PackedScene" uid="uid://matxhurqygh0" path="res://scene/2/indicator.tscn" id="2_wj0ej"]
+[ext_resource type="PackedScene" uid="uid://djm282bb0lxgv" path="res://scene/0/couple.tscn" id="3_o0w57"]
 [ext_resource type="PackedScene" uid="uid://wwnxuhg0a3iw" path="res://scene/3/flow.tscn" id="3_to10d"]
-[ext_resource type="PackedScene" uid="uid://b0ynpqe3xd2gm" path="res://scene/2/aspect.tscn" id="3_u3q4v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
@@ -25,6 +25,7 @@ size_flags_vertical = 4
 script = ExtResource("1_7qwgf")
 
 [node name="BG" type="Panel" parent="."]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
 
@@ -52,7 +53,7 @@ visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="Gravity" parent="VBox/HBox/Gravities/Turnovers" instance=ExtResource("3_u3q4v")]
+[node name="Gravity" parent="VBox/HBox/Gravities/Turnovers" instance=ExtResource("3_o0w57")]
 layout_mode = 2
 
 [node name="Highs" type="HBoxContainer" parent="VBox/HBox/Gravities"]
@@ -64,7 +65,7 @@ visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="Gravity" parent="VBox/HBox/Gravities/Highs" instance=ExtResource("3_u3q4v")]
+[node name="Gravity" parent="VBox/HBox/Gravities/Highs" instance=ExtResource("3_o0w57")]
 layout_mode = 2
 
 [node name="Satellites" type="HBoxContainer" parent="VBox"]

@@ -80,12 +80,13 @@ func switch_striker() -> void:
 	else:
 		striker = opponents[striker]
 	
-	var moon = opponents[striker]
 	striker.flow.set_impulse_as_striker(true)
 	striker.flow.lows.visible = false
 	striker.flow.highs.visible = true
 	striker.flow.clean_tides("secret")
 	striker.flow.clean_tides("legacie")
+	
+	var moon = opponents[striker]
 	moon.flow.set_impulse_as_striker(false)
 	moon.flow.lows.visible = true
 	moon.flow.highs.visible = false

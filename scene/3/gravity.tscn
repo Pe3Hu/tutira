@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cjkf0au6hyakd"]
 
 [ext_resource type="Script" path="res://scene/3/gravity.gd" id="1_kp2lf"]
-[ext_resource type="PackedScene" uid="uid://ciw38iqel0v5a" path="res://scene/0/icon.tscn" id="2_5skhq"]
+[ext_resource type="PackedScene" uid="uid://djm282bb0lxgv" path="res://scene/0/couple.tscn" id="2_spure"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
@@ -26,8 +26,5 @@ script = ExtResource("1_kp2lf")
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
 
-[node name="Border" parent="." instance=ExtResource("2_5skhq")]
-layout_mode = 2
-
-[node name="Content" parent="." instance=ExtResource("2_5skhq")]
+[node name="Couple" parent="." instance=ExtResource("2_spure")]
 layout_mode = 2

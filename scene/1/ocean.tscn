@@ -22,6 +22,7 @@ size_flags_vertical = 4
 script = ExtResource("1_2f28d")
 
 [node name="BG" type="Panel" parent="."]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
 

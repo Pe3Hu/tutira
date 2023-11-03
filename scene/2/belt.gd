@@ -17,8 +17,11 @@ func set_icons(input_: Dictionary) -> void:
 	kind.set_attributes(input_.kind)
 	
 	if !input_.condition.has("type"):
-		input_.condition.type = "weight"
-		input_.condition.subtype = "any"
+#		input_.condition.type = "weight"
+#		input_.condition.subtype = "any"
+		input_.condition.type = input_.kind.type
+		input_.condition.subtype = input_.kind.subtype
+		kind.visible = false
 	
 	input_.condition.proprietor = self
 	couple.set_attributes(input_.condition)
@@ -43,13 +46,11 @@ func get_self_bonus_impulse() -> int:
 
 func get_other_bonus_impulse_for_satellite(satellite_: MarginContainer) -> int:
 	var value = 0
-	
-	#match couple.title.type:
-		#if check_weight(satellite_):
 	var flag = call("check_"+couple.title.type, satellite_)
 	
 	if flag:
 		value += couple.stack.get_number()
+		value *= satellite.get_passed_milestone_value()
 	
 	return value
 

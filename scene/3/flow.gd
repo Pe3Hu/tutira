@@ -48,8 +48,6 @@ func douse_wave() -> void:
 
 func set_tide_breaker() -> void:
 	if lows.get_child_count() > 0:
-		#var a = lows.get_child_count()-1
-		#var b = lows.get_children()
 		tide_breaker = lows.get_child(lows.get_child_count()-1)
 		lows.remove_child(tide_breaker)
 		highs.add_child(tide_breaker)
@@ -60,6 +58,7 @@ func set_tide_breaker() -> void:
 		input.flow = self
 		input.satellite = tide_breaker.satellite
 		input.type = "high"
+		input.tide = tide_breaker
 		add_secret(input)
 		add_legacy(input)
 
@@ -87,8 +86,9 @@ func ride_wave(type_: String) -> void:
 	var tide = Global.scene.tide.instantiate()
 	tides.add_child(tide)
 	tide.set_attributes(input)
-	
 	impulse.change_content_value(tide.impulse)
+	
+	input.tide = tide
 	add_secret(input)
 	add_legacy(input)
 
@@ -120,8 +120,8 @@ func add_secret(input_: Dictionary) -> void:
 				enchantment.set_attributes(input)
 				enchantment.visible = true
 				
-				input_.subtype = "secret"
 			
+			input_.subtype = "secret"
 			var tide = Global.scene.tide.instantiate()
 			secrets.add_child(tide)
 			tide.set_attributes(input_)
@@ -141,7 +141,6 @@ func add_legacy(input_: Dictionary) -> void:
 				element.visible = true
 			
 			input_.subtype = "legacy"
-			
 			var tide = Global.scene.tide.instantiate()
 			legacies.add_child(tide)
 			tide.set_attributes(input_)

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c1hd7twhwrq7u" path="res://scene/1/ocean.tscn" id="2_ni06r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
-bg_color = Color(0.372549, 0.372549, 0.372549, 1)
+bg_color = Color(0.843137, 0.843137, 0.843137, 1)
 
 [node name="Sketch" type="MarginContainer"]
 custom_minimum_size = Vector2(5, 5)
@@ -24,6 +24,7 @@ size_flags_vertical = 4
 script = ExtResource("1_p5a48")
 
 [node name="BG" type="Panel" parent="."]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7paps")
 

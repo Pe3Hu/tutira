@@ -51,6 +51,10 @@ func get_current_milestone_value() -> int:
 	return currentMilestone.get_content_value()
 
 
+func get_passed_milestone_value() -> int:
+	return get_max_milestone_value() - get_current_milestone_value()
+
+
 func add_belt(input_: Dictionary) -> void:
 	if get(input_.kind.type) == null:
 		set(input_.kind.type, input_.kind.subtype)

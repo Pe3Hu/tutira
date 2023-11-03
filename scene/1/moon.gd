@@ -28,42 +28,40 @@ func set_nodes_attributes() -> void:
 	input.moon = self
 	flow.set_attributes(input)
 	input.type = "health"
-	input.max = 100
+	input.max = 1000
 	health.set_attributes(input)
 
 
 func init_starter_gravities() -> void:
 	var input = {}
 	input.proprietor = self
-	input.border = {}
-	input.border.type = "aspect"
-	input.border.subtype = "gravity turnover"
-	input.content = {}
-	input.content.type = "number"
-	input.content.subtype = 0
+	input.type = "gravity"
+	input.subtype = "turnover"
+	input.value = 0
 	turnoverGravity.set_attributes(input)
 	
-	input.border.subtype = "gravity high"
+	input.subtype = "high"
 	highGravity.set_attributes(input)
 	
 	input.moon = self
-	input.type = "turnover"
+	input.subtype = "turnover"
 	input.turns = -1
 	input.value = 1
 	add_modifier(input)
 	
-	input.type = "high"
+	input.value = 4
+	input.subtype = "high"
 	add_modifier(input)
 
 
 func add_modifier(input_: Dictionary) -> void:
-	var modifiers = get(input_.type+"Modifiers")
+	var modifiers = get(input_.subtype+"Modifiers")
 	var modifier = Global.scene.gravity.instantiate()
 	modifiers.add_child(modifier)
 	modifier.set_attributes(input_)
 	
-	var gravity = get(input_.type+"Gravity")
-	gravity.change_content_value(modifier.value)
+	var gravity = get(input_.subtype+"Gravity")
+	gravity.stack.change_number(modifier.value)
 
 
 func init_starter_satellites() -> void:
@@ -87,23 +85,28 @@ func init_starter_belts() -> void:
 #	input.condition.value = 3
 #	input.condition.penalty = 1
 	
-#	input.kind.type = "element"
-#	input.kind.subtype = Global.arr.element.pick_random()
-#	input.condition = {}
-#	input.condition.value = 0.5
-#	input.condition.penalty = 1
+	input.kind.type = "element"
+	input.kind.subtype = Global.arr.element.pick_random()
+	input.condition = {}
+	input.condition.value = 0.5
+	input.condition.penalty = 1
+	
+	var satellites_ = get_satellites_based_on_mass(4)
+	var satellite = satellites_.front()
+	#satellite.add_belt(input)
 	
 	input.kind.type = "sin"
-	input.kind.subtype = "envy"
+	input.kind.subtype = "envy" #envy pride greed
 	input.condition = {}
 	input.condition.type = "weight"
-	input.condition.subtype = "any"
+	input.condition.subtype = "eqaual"
+#	input.condition.type = "weight"
+#	input.condition.subtype = "any"
 	input.condition.value = 1
 	input.condition.penalty = 0
-	
-	var satellites_ = get_satellites_based_on_mass(1)
-	var satellite = satellites_.front()
-	
+
+	satellites_ = get_satellites_based_on_mass(1)
+	satellite = satellites_.front()
 	satellite.add_belt(input)
 
 
@@ -119,15 +122,14 @@ func get_satellites_based_on_mass(mass_: int) -> Array:
 
 func get_satellites_phases() -> Dictionary:
 	var phases = {}
-	phases.total = 0
+	phases.passed = 0
 	phases.upcoming = 0
 	
 	for satellite in satellites.get_children():
-		phases.total += satellite.maxMilestone.get_content_value()
-		phases.upcoming += satellite.currentMilestone.get_content_value()
+		phases.passed += satellite.get_passed_milestone_value()
+		phases.upcoming += satellite.get_current_milestone_value()
 	
-	phases.passed = phases.total - phases.upcoming
-	#print(phases)
+	print(phases)
 	return phases
 
 
@@ -139,8 +141,8 @@ func get_satellites_moons() -> Dictionary:
 	
 	for satellite in satellites.get_children():
 		var milestones = {}
-		milestones.current = satellite.currentMilestone.get_content_value()
-		milestones.max = satellite.maxMilestone.get_content_value()
+		milestones.max = satellite.get_max_milestone_value()
+		milestones.current = satellite.get_current_milestone_value()
 		var moon = null
 		
 		match milestones.current:
@@ -152,9 +154,9 @@ func get_satellites_moons() -> Dictionary:
 		if moon == null:
 			moon = "half"
 		
-		print([satellite.get_index(), moon])
+		
 		moons[moon] += 1
-	print(moons)
+	
 	return moons
 
 

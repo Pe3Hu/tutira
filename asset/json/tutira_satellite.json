@@ -4,7 +4,7 @@
   "faction": "z",
   "rank": "copper",
   "mass": 1,
-  "milestone": 6,
+  "milestone": 16,
   "rarity": 1
  },
  {
@@ -40,7 +40,7 @@
   "rarity": 1
  },
  {
-  "title": 4,
+  "title": 5,
   "faction": "z",
   "rank": "copper",
   "mass": 6,
