@@ -52,9 +52,9 @@ func set_as_tidebreaker() -> void:
 	input.type = "tide"
 	input.subtype = "tidebreaker"
 	basic.border.set_attributes(input)
-	impulse = satellite.aspects.get_mass_value()#basic.get_content_value()
+	impulse = satellite.aspects.get_mass_value()
 	#custom_minimum_size = Vector2(Global.vec.size.tidebreaker)
-	#print(impulse)
+	
 	if subtype == null:
 		apply_self_belts()
 		apply_other_belts()

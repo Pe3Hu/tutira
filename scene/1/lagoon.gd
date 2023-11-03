@@ -25,16 +25,14 @@ func set_attributes(input_: Dictionary) -> void:
 	moons.get_child(1).flow.opponent = moons.get_child(0).flow
 	
 	switch_striker()
-	
-	for _i in 0:
-		follow_phase()
+	skip_phases()
 
 
 func add_moon(moon_: MarginContainer) -> void:
 	ocean.moons.remove_child(moon_)
 	moons.add_child(moon_)
+	moon_.reset()
 	moon_.lagoon = self
-	moon_.flow.refill_satellites()
 
 
 func reset_phases() -> void:
@@ -49,6 +47,8 @@ func follow_phase() -> void:
 		
 		var phase = phases.pop_front()
 		call(phase)
+	#else:
+	#	call("close")
 
 
 func init_high_waves() -> void:
@@ -56,8 +56,6 @@ func init_high_waves() -> void:
 	
 	for _i in striker.highGravity.get_gravity_value():
 		striker.flow.ride_wave("high")
-	
-	#striker.get_satellites_phases()
 
 
 func init_low_waves() -> void:
@@ -67,9 +65,6 @@ func init_low_waves() -> void:
 
 
 func reset_waves() -> void:
-	#var moon = opponents[striker]
-	#striker.flow.clean_tides("high")
-	#striker = opponents[striker]
 	switch_striker()
 
 
@@ -95,3 +90,27 @@ func switch_striker() -> void:
 	moon.flow.clean_tides("legacie")
 	moon.flow.clean_tidebreaker()
 
+
+func skip_phases() -> void:
+	while !end:
+		follow_phase()
+
+
+func close() -> void:
+	var result = get_result()
+	print(result)
+	
+	while moons.get_child_count() > 0:
+		var moon = moons.get_child(0)
+		moons.remove_child(moon)
+		ocean.moons.add_child(moon)
+
+
+func get_result() -> Array:
+	var result = []
+	
+	for moon in moons.get_children():
+		var health = moon.health.bar.value
+		result.append(health)
+	
+	return result

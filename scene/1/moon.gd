@@ -20,7 +20,7 @@ func set_attributes(input_: Dictionary) -> void:
 	set_nodes_attributes()
 	init_starter_gravities()
 	init_starter_satellites()
-	init_starter_belts()
+	#init_starter_belts()
 
 
 func set_nodes_attributes() -> void:
@@ -28,7 +28,7 @@ func set_nodes_attributes() -> void:
 	input.moon = self
 	flow.set_attributes(input)
 	input.type = "health"
-	input.max = 1000
+	input.max = 100
 	health.set_attributes(input)
 
 
@@ -49,7 +49,7 @@ func init_starter_gravities() -> void:
 	input.value = 1
 	add_modifier(input)
 	
-	input.value = 4
+	input.value = 1
 	input.subtype = "high"
 	add_modifier(input)
 
@@ -122,16 +122,15 @@ func get_satellites_based_on_mass(mass_: int) -> Array:
 
 
 func get_satellites_phases() -> Dictionary:
-	var phases = {}
-	phases.passed = 0
-	phases.upcoming = 0
+	var milestones = {}
+	milestones.passed = 0
+	milestones.upcoming = 0
 	
 	for satellite in satellites.get_children():
-		phases.passed += satellite.get_passed_milestone_value()
-		phases.upcoming += satellite.get_current_milestone_value()
+		milestones.passed += satellite.aspects.get_passed_value()
+		milestones.upcoming += satellite.aspects.get_upcoming_value()
 	
-	print(phases)
-	return phases
+	return milestones
 
 
 func get_satellites_moons() -> Dictionary:
@@ -142,8 +141,8 @@ func get_satellites_moons() -> Dictionary:
 	
 	for satellite in satellites.get_children():
 		var milestones = {}
-		milestones.passed = satellite.get_passed_milestone_value()
-		milestones.upcoming = satellite.get_current_milestone_value()
+		milestones.passed = satellite.aspects.get_passed_value()
+		milestones.upcoming = satellite.aspects.get_upcoming_value()
 		var moon = null
 		
 		if milestones.passed == 0:
@@ -163,4 +162,33 @@ func get_satellites_moons() -> Dictionary:
 func knockout() -> void:
 	lagoon.winner = flow.opponent.moon
 	lagoon.end = true
-	print("knockouted ", self)
+	lagoon.close()
+	#print("knockouted ", self)
+
+
+func reset() -> void:
+	lagoon = null
+	flow.satellites = []
+	flow.refill_satellites()
+	health.reset()
+	remove_all_gravity_modifiers()
+	
+	for satellite in satellites.get_children():
+		satellite.aspects.reset()
+
+
+func remove_all_gravity_modifiers() -> void:
+	var subtypes = ["high", "turnover"]
+	
+	for subtype in subtypes:
+		var modifiers = get(subtype+"Modifiers")
+		var gravity = get(subtype+"Gravity")
+		
+		while modifiers.get_child_count() > 0:
+			var modifier = modifiers.get_child(0)
+			modifiers.remove_child(modifier)
+			gravity.couple.stack.change_number(-modifier.value)
+
+func remove_all_belts() -> void:
+	for satellite in satellites.get_children():
+		satellite.remove_all_belts()

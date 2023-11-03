@@ -49,3 +49,7 @@ func update_value(value_: String, shift_: int) -> void:
 
 func get_percentage() -> int:
 	return floor(bar.value * 100 / bar.max_value)
+
+
+func reset() -> void:
+	bar.value = bar.max_value

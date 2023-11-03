@@ -35,7 +35,6 @@ alignment = 1
 layout_mode = 2
 
 [node name="Passed" parent="HBox" instance=ExtResource("1_452ox")]
-visible = false
 layout_mode = 2
 
 [node name="Upcoming" parent="HBox" instance=ExtResource("1_452ox")]

@@ -30,3 +30,14 @@ func add_belt(input_: Dictionary) -> void:
 		belt.set_attributes(input_)
 	else:
 		print("erro: kind != null")
+
+
+func remove_all_belts() -> void:
+	enchantment = null
+	element = null
+	sin = null
+	
+	while belts.get_child_count() > 0:
+		var belt = belts.get_child(0)
+		belts.remove_child(belt)
+		belt.queue_free()

@@ -27,6 +27,7 @@ func init_arr() -> void:
 	arr.phase = ["init_high_waves", "init_low_waves", "reset_waves"]
 	arr.enchantment = ["source", "riverbed", "estuary"]
 	arr.element = ["aqua", "ice", "wind", "storm", "fire", "lava", "earth", "plant"]
+	arr.dimension = ["mass", "milestone"]
 
 
 func init_num() -> void:
@@ -53,6 +54,10 @@ func init_sin() -> void:
 	dict.sin.other["lust"] = "tidebreaker"
 	dict.sin.other["gluttony"] = "high tide"
 	dict.sin.other["envy"] = "all"
+	
+	dict.thousand = {}
+	dict.thousand[""] = "K"
+	dict.thousand["K"] = "M"
 
 
 func init_dominant() -> void:
