@@ -43,9 +43,15 @@ func init_starter_gravities() -> void:
 	
 	input.subtype = "high"
 	highGravity.set_attributes(input)
-	
+	add_starter_gravity_modifiers()
+
+
+func add_starter_gravity_modifiers() -> void:
+	var input = {}
 	input.moon = self
+	input.type = "gravity"
 	input.subtype = "turnover"
+	input.turns = -1
 	input.value = 1
 	add_modifier(input)
 	
@@ -162,7 +168,7 @@ func get_satellites_moons() -> Dictionary:
 func knockout() -> void:
 	lagoon.winner = flow.opponent.moon
 	lagoon.end = true
-	lagoon.close()
+	#lagoon.close()
 	#print("knockouted ", self)
 
 
@@ -174,6 +180,7 @@ func reset() -> void:
 	remove_all_gravity_modifiers()
 	
 	for satellite in satellites.get_children():
+		satellite.aspects.remove_symbiote()
 		satellite.aspects.reset()
 
 
@@ -188,6 +195,9 @@ func remove_all_gravity_modifiers() -> void:
 			var modifier = modifiers.get_child(0)
 			modifiers.remove_child(modifier)
 			gravity.couple.stack.change_number(-modifier.value)
+	
+	add_starter_gravity_modifiers()
+
 
 func remove_all_belts() -> void:
 	for satellite in satellites.get_children():

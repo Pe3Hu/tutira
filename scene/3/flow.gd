@@ -66,7 +66,10 @@ func set_tidebreaker() -> void:
 
 func clean_tidebreaker() -> void:
 	if tidebreaker != null:
-		highs.remove_child(tidebreaker)
+		if tidebreaker.get_parent() != null:
+			var parent = tidebreaker.get_parent()
+			parent.remove_child(tidebreaker)
+		
 		tidebreaker.queue_free()
 		tidebreaker = null
 

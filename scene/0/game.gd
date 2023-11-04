@@ -15,6 +15,15 @@ func _input(event) -> void:
 			KEY_SPACE:
 				if event.is_pressed() && !event.is_echo():
 					Global.node.sketch.ocean.lagoons.get_child(0).follow_phase()
+			KEY_1:
+				if event.is_pressed() && !event.is_echo():
+					Global.node.sketch.ocean.init_lagoon()
+			KEY_2:
+				if event.is_pressed() && !event.is_echo():
+					Global.node.sketch.ocean.lagoons.get_child(0).skip_phases()
+			KEY_3:
+				if event.is_pressed() && !event.is_echo():
+					Global.node.sketch.ocean.lagoons.get_child(0).close()
 
 
 func _process(delta_) -> void:

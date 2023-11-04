@@ -6,6 +6,7 @@ extends MarginContainer
 
 
 var sketch = null
+var statistics = []
 
 
 func set_attributes(input_: Dictionary) -> void:
@@ -13,7 +14,16 @@ func set_attributes(input_: Dictionary) -> void:
 	
 	init_moons()
 	simulate_belt_balance()
+	#var path = "res://asset/json/tutira_statistics.json.json"
+	#var file_dict = Global.load_data(path)
+	#print(file_dict)
 	#init_lagoon()
+	
+#	for _i in 10:
+#		init_lagoon()
+#		var lagoon = lagoons.get_child(0)
+#		lagoon.skip_phases()
+#		lagoon.close()
 
 
 func init_moons() -> void:
@@ -30,28 +40,57 @@ func init_lagoon() -> void:
 	var input = {}
 	input.ocean = self
 	input.moons = [moons.get_child(0), moons.get_child(1)]
-	
 	var lagoon = Global.scene.lagoon.instantiate()
 	lagoons.add_child(lagoon)
 	lagoon.set_attributes(input)
 
 
 func simulate_belt_balance() -> void:
-	var title = "youthfulness"
-	for _i in 1:#range(1, 6, 1):
-		#for title in Global.dict.belt.title:
-		var description = Global.dict.belt.title[title]
-		
-		for sin in Global.dict.sin[description.token]:
-			var input = {}
-			input.mass = _i + 1
-			input.title = title
-			input.sin = sin
-			add_simulated_belt_to_moon(input)
-			init_lagoon()
-			#var lagoon = lagoons.get_child(0)
-			#lagoon.skip_phases()
+	#var title = "youthfulness"
+	var k = 10
+	
+	for _i in 5:#range(1, 7, 1):
+		for title in Global.dict.belt.title:
+			var description = Global.dict.belt.title[title]
+			
+			for sin in Global.dict.sin[description.token]:
+				var input = {}
+				input.mass = _i + 1
+				input.title = title
+				input.sin = sin
+				print(input.mass)
+				
+				var healths = [0, 0]
+			
+				for _k in k:
+					add_simulated_belt_to_moon(input)
+					init_lagoon()
+					var lagoon = lagoons.get_child(0)
+					lagoon.skip_phases()
+					var result = lagoon.get_result()
+					#print([sin, result])
+					
+					for _j in result.size():
+						healths[_j] += result[_j]
+					
+					lagoon.close()
+				
+				var data = {}
+				data.mass = input.mass
+				data.title = input.title
+				data.sin = input.sin
+				
+				for _j in healths.size():
+					var key = "health "+ str(_j)
+					data[key] = float(healths[_j] / k)
+					#print(data)
+				statistics.append(data)
+					#print(statistics)
+				
 			#return
+	
+	Global.save_statistics(statistics)
+	#print(statistics)
 
 
 func add_simulated_belt_to_moon(input_: Dictionary) -> void:
@@ -70,13 +109,15 @@ func add_simulated_belt_to_moon(input_: Dictionary) -> void:
 	input.condition.value = description.value
 	input.condition.penalty = description.penalty
 	
-	var satellites =  moon.get_satellites_based_on_mass(1)
+	var satellites = moon.get_satellites_based_on_mass(1)
 	var satellite = satellites.front()
 	satellite.remove_all_belts()
 	satellite.aspects.remove_symbiote()
 	satellite.add_belt(input)
+	
 	var symbiote = create_symbiote_passed_on_satellite(satellite, description.penalty)
 	satellite.aspects.apply_symbiote(symbiote)
+	
 
 
 func create_symbiote_passed_on_satellite(satellite_: MarginContainer, penalty_: int) -> Dictionary:
@@ -96,4 +137,3 @@ func create_symbiote_passed_on_satellite(satellite_: MarginContainer, penalty_: 
 		penalty_ -= 1
 	
 	return symbiote
-	

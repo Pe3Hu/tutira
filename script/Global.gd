@@ -218,7 +218,7 @@ func init_color():
 
 
 func save(path_: String, data_: String):
-	var path = path_ + ".json"
+	var path = path_
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(data_)
 
@@ -254,3 +254,13 @@ func get_random_key(dict_: Dictionary):
 	
 	print("!bug! index_r error in get_random_key func")
 	return null
+
+
+func save_statistics(statistics_) -> void:
+	var time = Time.get_datetime_string_from_datetime_dict(Time.get_datetime_dict_from_system(), true)
+	var path = "res://asset/json/tutira_statistics.json"# + "stat" + ".json"
+	var file_dict = load_data(path)
+	print(file_dict)
+	file_dict[time] = statistics_
+	var str_ = JSON.stringify(file_dict)
+	save(path, str_)

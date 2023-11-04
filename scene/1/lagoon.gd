@@ -25,7 +25,7 @@ func set_attributes(input_: Dictionary) -> void:
 	moons.get_child(1).flow.opponent = moons.get_child(0).flow
 	
 	switch_striker()
-	skip_phases()
+	#skip_phases()
 
 
 func add_moon(moon_: MarginContainer) -> void:
@@ -46,8 +46,10 @@ func follow_phase() -> void:
 			reset_phases()
 		
 		var phase = phases.pop_front()
+		print(phase)
 		call(phase)
-	#else:
+	else:
+		print("closed")
 	#	call("close")
 
 
@@ -96,16 +98,6 @@ func skip_phases() -> void:
 		follow_phase()
 
 
-func close() -> void:
-	var result = get_result()
-	print(result)
-	
-	while moons.get_child_count() > 0:
-		var moon = moons.get_child(0)
-		moons.remove_child(moon)
-		ocean.moons.add_child(moon)
-
-
 func get_result() -> Array:
 	var result = []
 	
@@ -113,4 +105,17 @@ func get_result() -> Array:
 		var health = moon.health.bar.value
 		result.append(health)
 	
+	#print(result)
 	return result
+
+
+func close() -> void:
+	#get_result()
+	
+	while moons.get_child_count() > 0:
+		var moon = moons.get_child(0)
+		moons.remove_child(moon)
+		ocean.moons.add_child(moon)
+	
+	ocean.lagoons.remove_child(self)
+	queue_free()

@@ -7,18 +7,11 @@
   "penalty": 0
  },
  {
-  "title": "speed",
-  "token": "self",
-  "value": 2,
-  "rarity": 10,
-  "penalty": 0
- },
- {
   "title": "youthfulness",
   "token": "self",
   "type": "phase",
   "subtype": "upcoming",
-  "value": 1,
+  "value": 0.25,
   "rarity": 3,
   "penalty": 2
  },
@@ -27,7 +20,7 @@
   "token": "self",
   "type": "phase",
   "subtype": "passed",
-  "value": 1,
+  "value": 0.25,
   "rarity": 3,
   "penalty": 2
  },
@@ -89,7 +82,7 @@
   "title": "titul",
   "token": "other",
   "type": "weight",
-  "subtype": "eqaual",
+  "subtype": "equal",
   "value": 1,
   "rarity": 2,
   "penalty": 1

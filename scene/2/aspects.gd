@@ -71,7 +71,7 @@ func apply_symbiote(symbiote_: Dictionary) -> void:
 			dimensions.total += symbiote[dimension]
 		
 		reset()
-		print([symbiote_, mass.stack.get_number(), upcoming.stack.get_number()])
+		#print([symbiote_, mass.stack.get_number(), upcoming.stack.get_number()])
 	else:
 		print("error: simbiote != null")
 
