@@ -3,7 +3,7 @@ extends MarginContainer
 
 @onready var moons = $HBox/Moons
 @onready var lagoons = $HBox/Lagoons
-
+@onready var tombolo = $HBox/Tombolo
 
 var sketch = null
 var statistics = []
@@ -13,7 +13,7 @@ func set_attributes(input_: Dictionary) -> void:
 	sketch = input_.sketch
 	
 	init_moons()
-	simulate_belt_balance()
+	#simulate_belt_balance()
 	#var path = "res://asset/json/tutira_statistics.json.json"
 	#var file_dict = Global.load_data(path)
 	#print(file_dict)

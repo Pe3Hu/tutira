@@ -173,10 +173,11 @@ func init_scene() -> void:
 	scene.lagoon = load("res://scene/1/lagoon.tscn")
 	
 	scene.satellite = load("res://scene/2/satellite.tscn")
-	scene.belt = load("res://scene/2/belt.tscn")
 	
 	scene.gravity = load("res://scene/3/gravity.tscn")
 	scene.tide = load("res://scene/3/tide.tscn")
+	
+	scene.belt = load("res://scene/4/belt.tscn")
 	pass
 
 

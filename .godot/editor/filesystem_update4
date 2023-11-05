@@ -12,3 +12,6 @@ res://scene/0/game.gd
 res://asset/json/tutira_belt.json
 res://asset/json/tutira_statistics.json.json
 res://asset/json/tutira_statistics.json
+res://scene/4/tombolo.tscn
+res://scene/4/belt.gd
+res://scene/4/tombolo.gd

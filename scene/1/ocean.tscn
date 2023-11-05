@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1hd7twhwrq7u"]
+[gd_scene load_steps=4 format=3 uid="uid://c1hd7twhwrq7u"]
 
 [ext_resource type="Script" path="res://scene/1/ocean.gd" id="1_2f28d"]
+[ext_resource type="PackedScene" uid="uid://cyllytqkw1wi1" path="res://scene/4/tombolo.tscn" id="2_a8f2w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
@@ -37,3 +38,6 @@ alignment = 1
 [node name="Lagoons" type="VBoxContainer" parent="HBox"]
 layout_mode = 2
 alignment = 1
+
+[node name="Tombolo" parent="HBox" instance=ExtResource("2_a8f2w")]
+layout_mode = 2

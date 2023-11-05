@@ -8,7 +8,8 @@ var satellite = null
 
 
 func set_attributes(input_: Dictionary) -> void:
-	satellite = input_.satellite
+	if input_.has("satellite"):
+		satellite = input_.satellite
 	
 	set_icons(input_)
 

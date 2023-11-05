@@ -46,11 +46,11 @@ func follow_phase() -> void:
 			reset_phases()
 		
 		var phase = phases.pop_front()
-		print(phase)
+		#print(phase)
 		call(phase)
-	else:
-		print("closed")
-	#	call("close")
+#	else:
+#		print("closed")
+#		call("close")
 
 
 func init_high_waves() -> void:
